@@ -1,0 +1,68 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui"
+        template="/WEB-INF/jsf-templates/bills-bootsfaces-template.xhtml"
+>
+
+    <ui:param name="title" value="Bill Details" />
+
+    <ui:define name="maincontent">
+
+    <b:jumbotron style="text-align:center">
+        <h1>Bill Details</h1>
+    </b:jumbotron>
+
+    <b:form>
+        <b:panel title="Bill Details" collapsible="false">
+            <b:panelGrid columns="2" colSpans="2, 10">
+                <h:panelGroup>
+                    <h:outputText value="ID"/>
+                </h:panelGroup>
+                <h:outputText value="#{currentBillDetailsController.existingBill.billId}" />
+
+                <h:panelGroup>
+                    <h:outputText value="Payee Name"/>
+                </h:panelGroup>
+                <h:outputText value="#{currentBillDetailsController.existingBill.payeeName}" />
+
+                <h:panelGroup>
+                    <h:outputText value="Due Date"/>
+                </h:panelGroup>
+                <h:outputText value="#{currentBillDetailsController.existingBill.dueDate}" />
+
+                <h:panelGroup>
+                    <h:outputText value="Amount Due"/>
+                </h:panelGroup>
+                <h:outputText value="#{currentBillDetailsController.existingBill.amountDue}" />
+
+                <h:panelGroup>
+                    <h:outputText value="Amount Balance"/>
+                </h:panelGroup>
+                <h:outputText value="#{currentBillDetailsController.existingBill.amountBalance}" />
+
+            </b:panelGrid>
+        </b:panel>
+
+        <b:link id="editLink" outcome="editBill" icon-awesome="edit" >
+            <f:param name="editId" value="#{currentBillDetailsController.editId}" />
+            edit
+        </b:link>
+        |
+        <b:link id="backToListLink" outcome="manageBills"  >
+            Back to List
+        </b:link>
+
+    </b:form>
+
+    </ui:define>
+</ui:composition>

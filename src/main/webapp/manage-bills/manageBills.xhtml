@@ -1,0 +1,100 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui"
+        template="/WEB-INF/jsf-templates/bills-bootsfaces-template.xhtml"
+>
+
+    <ui:param name="title" value="Manage Bills" />
+
+    <ui:define name="maincontent">
+    <b:jumbotron style="text-align:center">
+        <h1>Manage Bills</h1>
+    </b:jumbotron>
+
+    <b:container>
+        <b:messages id="messages" />
+
+        <b:form>
+            <b:inputText
+                id="payeeName"
+                label="Payee Name"
+                value="#{currentBillCreateController.newBill.payeeName}"
+                >
+            </b:inputText>
+
+            <b:dateTimePicker
+                    id="dueDate"
+                    label="Due Date"
+                    value="#{currentBillCreateController.newBill.dueDate}"
+                    format="YYYY-MM-DD"
+            >
+                <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+            </b:dateTimePicker>
+
+            <b:inputText
+                id="amountDue"
+                label="Amount Due"
+                value="#{currentBillCreateController.newBill.amountDue}"
+                >
+            </b:inputText>
+
+            <b:commandButton
+                value="Add Bill"
+                action="#{currentBillCreateController.onCreateNew}"
+                ajax="false"
+                >
+            </b:commandButton>
+        </b:form>
+
+        <b:form>
+            <b:dataTable
+                    id="billsTable"
+                    value="#{currentBillListController.list()}"
+                    var="currentBill">
+                <b:dataTableColumn label="Bill ID" value="#{currentBill.billId}" />
+                <b:dataTableColumn label="Payee Name" value="#{currentBill.payeeName}"/>
+                <b:dataTableColumn label="Due Date" value="#{currentBill.dueDate}"/>
+                <b:dataTableColumn label="Amount Due" value="#{currentBill.amountDue}"/>
+                <b:dataTableColumn label="Amount Balance" value="#{currentBill.amountBalance}"/>
+                <b:dataTableColumn label="Action">
+                    <b:link id="editLink" outcome="editBill" look="info" icon-awesome="edit">
+                        <f:param name="editId" value="#{currentBill.billId}"/>
+                        edit
+                    </b:link>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="Action">
+                    <b:link id="detailsLink" outcome="details" icon-awesome="info" >
+                        <f:param name="editId" value="#{currentBill.billId}" />
+                        details
+                    </b:link>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="Action">
+                    <b:link id="paymentLink" outcome="payment" icon-awesome="dollar" >
+                        <f:param name="editId" value="#{currentBill.billId}" />
+                        make a payment
+                    </b:link>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="Action">
+                    <b:link id="deleteLink" outcome="delete" icon-awesome="trash" >
+                        <f:param name="editId" value="#{currentBill.billId}" />
+                        delete
+                    </b:link>
+                </b:dataTableColumn>
+
+            </b:dataTable>
+        </b:form>
+        <b:link id="viewTimers" outcome="timers" icon-awesome="clock" >View Timers</b:link>
+    </b:container>
+
+    </ui:define>
+</ui:composition>
