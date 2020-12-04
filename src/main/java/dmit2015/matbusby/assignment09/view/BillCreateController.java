@@ -20,7 +20,7 @@ public class BillCreateController {
     private Bill newBill = new Bill();
 
     public String onCreateNew() {
-        newBill.setAmountBalance(newBill.getAmountDue());
+//        newBill.setAmountBalance(newBill.getAmountDue());
         String nextPage = "";
         try {
             billService.create(newBill);

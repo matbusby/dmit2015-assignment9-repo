@@ -21,6 +21,7 @@ public class BillService {
     private EntityManager em;
 
     public void create(Bill newBill) {
+        newBill.setAmountBalance(newBill.getAmountDue());
         em.persist(newBill);
     }
 

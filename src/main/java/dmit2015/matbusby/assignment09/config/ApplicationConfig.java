@@ -9,8 +9,8 @@ import javax.faces.annotation.FacesConfig;
         @DataSourceDefinition(
                 name="java:app/datasources/h2databaseDS",
                 className="org.h2.jdbcx.JdbcDataSource",
-//				url="jdbc:h2:file:~/matBusby-assignment9-db",
-		        url="jdbc:h2:file:./data/mbusby-assignment07and8b-db",
+				url="jdbc:h2:file:~/matBusby-assignment9-db",
+//		        url="jdbc:h2:file:./data/mbusby-assignment07and8b-db",
 //                url="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1",
                 user="sa",
                 password="sa"),
